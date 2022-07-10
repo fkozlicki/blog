@@ -4,6 +4,9 @@ export const Background = styled.footer`
   padding: 15px;
   background: #dce2ef;
 `;
+export const Wave = styled.div`
+  transform: translateY(5px);
+`;
 export const Quote = styled.h2`
   font-family: 'Permanent Marker', cursive;
   font-size: 30px;

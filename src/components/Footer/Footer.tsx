@@ -8,9 +8,9 @@ import * as S from './Footer.styled';
 const Footer = () => {
   return (
     <footer>
-      <div>
+      <S.Wave>
         <StaticImage src="../../images/wave2.svg" alt="" layout="fullWidth" />
-      </div>
+      </S.Wave>
       <S.Background>
         <Container>
           <S.Quote>
