@@ -5,16 +5,19 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu = styled.div<MobileMenuProps>`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100vh;
   left: 0;
   top: 0;
   background: white;
   z-index: 100;
+  transform: ${(props) => (props.open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 250ms ease-in-out;
 
-  transform: ${(props) => (props.open ? 'translateX(0)' : 'translateX(-100%)')};
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const Box = styled.div`
@@ -33,6 +36,11 @@ export const Box = styled.div`
     padding: 10px 20px;
     font-size: 28px;
     font-weight: 500;
+  }
+
+  .category {
+    font-size: 24px;
+    padding-left: 40px;
   }
 `;
 
