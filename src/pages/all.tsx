@@ -1,52 +1,46 @@
-import { graphql } from 'gatsby';
-import React, { FC } from 'react';
+import { graphql, PageProps } from 'gatsby';
+import React from 'react';
 import Layout from '../components/Layout/Layout';
-import PostPreview from '../components/PostPreview/PostPreview';
-import { Container } from '../styles/Global.styled';
+import PostsSection from '../components/PostsSection/PostsSection';
+import { Container, Main } from '../styled/Utils';
 
-type AllProps = {
-  data: {
-    allStrapiPost: {
-      nodes: [
-        {
-          id: string;
-          title: string;
-          excerpt: string;
-          categories: [{ name: string }];
-        }
-      ];
-    };
-  };
-};
+interface AllProps extends PageProps {
+	data: {
+		allStrapiPost: {
+			nodes: [
+				{
+					id: string;
+					title: string;
+					excerpt: string;
+					categories: [{ name: string }];
+				}
+			];
+		};
+	};
+}
 
-const All: FC<AllProps> = ({ data }) => {
-  const posts = data.allStrapiPost.nodes;
-  return (
-    <Layout>
-      <main>
-        <Container>
-          {posts.map((post) => (
-            <PostPreview post={post} />
-          ))}
-        </Container>
-      </main>
-    </Layout>
-  );
+const All: Component<AllProps> = ({ data }) => {
+	const posts = data.allStrapiPost.nodes;
+	return (
+		<Layout>
+			<PostsSection posts={posts} header="Wszystkie Posty" />
+		</Layout>
+	);
 };
 
 export default All;
 
 export const query = graphql`
-  {
-    allStrapiPost(sort: { fields: title, order: ASC }) {
-      nodes {
-        title
-        excerpt
-        id
-        categories {
-          name
-        }
-      }
-    }
-  }
+	{
+		allStrapiPost(sort: { fields: title, order: ASC }) {
+			nodes {
+				title
+				excerpt
+				id
+				categories {
+					name
+				}
+			}
+		}
+	}
 `;
