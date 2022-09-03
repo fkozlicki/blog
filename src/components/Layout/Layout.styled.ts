@@ -1,38 +1,11 @@
-import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
-  :root {
-    --mobileS: 320px;
-    --mobileM: 375px;
-    --mobileL: 425px;
-    --tablet: 768px;
-    --laptop: 1024px;
-    --laptopL: 1440px;
-    --destop: 2560px  
-  }
+type LayoutProps = {
+	mobileMenuOpen: boolean;
+};
 
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Rubik', sans-serif;
-  }
-  html {
-    scroll-behavior: smooth;
-  }
-  a {
-    text-decoration: none;
-    color: initial;
-  }
-  ul {
-    list-style: none;
-  }
-  button {
-    border: none;
-    outline: none;
-    background: none;
-    cursor: pointer;
-  }
+export const Layout = styled.div<LayoutProps>`
+	background: ${(props) => props.theme.colors.backgroundPrimary};
+	height: ${(props) => props.mobileMenuOpen && '100vh'};
+	overflow: ${(props) => props.mobileMenuOpen && 'hidden'};
 `;
