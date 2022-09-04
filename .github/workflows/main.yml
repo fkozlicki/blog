@@ -33,6 +33,6 @@ jobs:
           image: fkozlicki/gatsby-blog
           tags: v1, latest
           registry: registry.hub.docker.com
-          dockerfile: ./server/Dockerfile
+          dockerfile: ../server/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
