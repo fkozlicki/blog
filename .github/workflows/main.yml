@@ -22,16 +22,15 @@ jobs:
         run: yarn build
         working-directory: ./server
   docker-build-and-deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        name: Check out code
-  - uses: mr-smithers-excellent/docker-build-push@v5
-    name: Build & push Docker image
-    with:
-      image: fkozlicki/gatsby-blog
-      tags: v1, latest
-      registry: registry-url.io
-      dockerfile: Dockerfile.ci
-      username: ${{ secrets.DOCKER_USERNAME }}
-      password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: fkozlicki/gatsby-blog
+          tags: v1, latest
+          registry: registry-url.io
+          dockerfile: Dockerfile.ci
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
