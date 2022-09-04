@@ -9,21 +9,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: 14
-
     steps:
       - uses: actions/checkout@v3
       - name: Setup node
-        working-directory: ./server
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 12
+        working-directory: ./server
       - name: Run ci
-        working-directory: ./server
         run: npm ci
-      - name: Build
         working-directory: ./server
+      - name: Build
         run: npm run build
+        working-directory: ./server
