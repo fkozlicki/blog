@@ -14,7 +14,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
       - name: Run ci
         run: yarn install --frozen-lockfile
         working-directory: ./server
@@ -31,6 +31,7 @@ jobs:
           image: fkozlicki/gatsby-blog
           tags: v1, latest
           registry: registry.hub.docker.com
-          dockerfile: Dockerfile.ci
+          dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+        working-directory: ./server
