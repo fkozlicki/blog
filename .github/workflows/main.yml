@@ -12,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 14
       - name: Run ci
-        run: npm ci
+        run: yarn install --frozen-lockfile
         working-directory: ./server
       - name: Build
-        run: npm run build
+        run: yarn build
         working-directory: ./server
