@@ -11,9 +11,9 @@ interface PostContentProps {
 
 const PostContent: Component<PostContentProps> = ({ content }) => {
 	const { activeId } = useHeadingsObserve();
-	const links = document.querySelectorAll(`${S.PostTableOfContents} a`); //tableOfContent linsk
 
 	useEffect(() => {
+		const links = document.querySelectorAll(`${S.PostTableOfContents} a`); //tableOfContent linsk
 		// clearing links
 		links.forEach((link) => link.setAttribute('active', 'false'));
 		// setting active link at tableOfContents
