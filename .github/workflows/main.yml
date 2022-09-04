@@ -11,18 +11,19 @@ defaults:
     working-directory: /server
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Setup node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #     - name: Run ci
-  #       run: yarn install --frozen-lockfile
-  #     - name: Build
-  #       run: yarn build
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Run ci
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
   docker-build-and-deploy:
     needs: build
     runs-on: ubuntu-latest
