@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-        working-directory: ./server
       - name: Run ci
         run: npm ci
         working-directory: ./server
