@@ -2,20 +2,22 @@ import bodyParser from 'body-parser';
 import express, { Express, Request, Response } from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app: Express = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '30mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const myAddress = 'filip.kozlickii@gmail.com';
-const myPassword = 'ceprelreiayfcbtx';
+const myAddress = process.env.GMAIL_USER;
 
 const mailer = nodemailer.createTransport({
 	service: 'Gmail',
 	auth: {
-		user: myAddress,
-		pass: myPassword,
+		user: process.env.GMAIL_USER,
+		pass: process.env.GMAIL_PASSWORD,
 	},
 });
 
@@ -26,7 +28,7 @@ app.post('/contact', (req: Request, res: Response) => {
 			sender: req.body.from,
 			replyTo: req.body.from,
 			from: req.body.from,
-			to: [myAddress],
+			to: myAddress,
 			subject: 'Email from sendmailer',
 			text: `Hey, ${req.body.name} here!\n${req.body.message}`,
 		},
