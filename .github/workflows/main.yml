@@ -27,12 +27,12 @@ jobs:
       - name: Build
         run: yarn build
       - name: Docker Login
-        env: 
+        env:
           DOCKER_USER: ${{secrets.DOCKER_USER}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: 
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        env: 
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Docker Push
+        env:
           REPO: gatsby-blog
         run: |
           docker build -t $REPO .
