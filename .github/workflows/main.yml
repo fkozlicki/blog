@@ -46,8 +46,8 @@ jobs:
           key: ${{secrets.SERVER_SSH_KEY}}
           envs: GITHUB_SHA
           script: |
-            docker login
-            docker pull ${{secrets.DOCKER_USERNAME}}/gatsby-blog
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            docker pull ${{secrets.DOCKER_USERNAME}}/gatsby-blog:server
             docker stop gatsby-server
             docker rm gatsby-server
             docker run -d --name gatsby-server -p 3000:3000 -e GMAIL_USER=${{secrets.GMAIL_USER}} -e GMAIL_PASSWORD=${{secrets.GMAIL_PASSWORD}} ${{secrets.DOCKER_USERNAME}}/gatsby-blog:server
