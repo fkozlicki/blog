@@ -22,7 +22,7 @@ const mailer = nodemailer.createTransport({
 });
 
 app.get('/', (req: Request, res: Response) => {
-	res.send('Welcome to Blog server');
+	res.send('Blog server');
 });
 
 app.post('/contact', (req: Request, res: Response) => {
