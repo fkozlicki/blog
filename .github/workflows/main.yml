@@ -18,28 +18,44 @@ jobs:
       run:
         working-directory: ./server
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 16
+
       - name: Run ci
         run: yarn install --frozen-lockfile
+
       - name: Build
         run: yarn build
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: Build and redeploy
-        uses: jaroldwong/ecr-push-and-ecs-deploy@v1.1
-        with:
-          ecr-registry: ${{ steps.login-ecr.outputs.registry }}
-          ecr-repository: 'blog'
-          ecs-cluster: 'GatsbyServer'
-          ecs-service: 'ServerService'
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+              id: task-def
+              uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
+              with:
+                task-definition: 'ServerTas'
+                container-name: 'ServerContainer'
+                image: ${{ steps.build-image.outputs.image }}
+
+            - name: Deploy Amazon ECS task definition
+              uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
+              with:
+                task-definition: ${{ steps.task-def.outputs.task-definition }}
+                service: 'ServerService'
+                cluster: 'GatsbyServer'
+                wait-for-service-stability: true
+
