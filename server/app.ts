@@ -21,8 +21,11 @@ const mailer = nodemailer.createTransport({
 	},
 });
 
+app.get('/', (req: Request, res: Response) => {
+	res.send('Welcome to Blog server');
+});
+
 app.post('/contact', (req: Request, res: Response) => {
-	console.log('BODY!!! ', req.body);
 	mailer.sendMail(
 		{
 			sender: req.body.from,
@@ -34,11 +37,9 @@ app.post('/contact', (req: Request, res: Response) => {
 		},
 		(err, info) => {
 			if (err) {
-				console.log('error', err.message);
 				return res.status(500).send(err);
 			}
 			res.status(200).json({ success: true });
-			console.log(info);
 		}
 	);
 });
