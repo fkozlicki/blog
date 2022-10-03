@@ -44,18 +44,17 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Fill in the new image ID in the Amazon ECS task definition
-              id: task-def
-              uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
-              with:
-                task-definition: 'ServerTas:2'
-                container-name: 'ServerContainer'
-                image: ${{ steps.build-image.outputs.image }}
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
+        with:
+          task-definition: 'ServerTas:2'
+          container-name: 'ServerContainer'
+          image: ${{ steps.build-image.outputs.image }}
 
-            - name: Deploy Amazon ECS task definition
-              uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
-              with:
-                task-definition: ${{ steps.task-def.outputs.task-definition }}
-                service: 'ServerService'
-                cluster: 'GatsbyServer'
-                wait-for-service-stability: true
-
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: 'ServerService'
+          cluster: 'GatsbyServer'
+          wait-for-service-stability: true
