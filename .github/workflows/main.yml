@@ -54,11 +54,18 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Run Task on Amazon ECS
-        uses: smitp/amazon-ecs-run-task@v1
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ./server/task-definition.json
+          task-definition: 'server/task-definition.json'
+          container-name: 'ServerContainer'
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ServerService
           cluster: GatsbyServer
-          count: 1
-          started-by: github-actions-${{ github.actor }}
-          wait-for-finish: true
+          wait-for-service-stability: true
