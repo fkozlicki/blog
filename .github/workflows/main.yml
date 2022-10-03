@@ -12,10 +12,12 @@ defaults:
 
 jobs:
   build-and-deploy-server:
+    name: Build and deploy server image to ECS
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./server
+
     steps:
       - uses: actions/checkout@v3
       - name: Setup node
@@ -26,28 +28,20 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build
         run: yarn build
-      - name: Docker Login
-        env:
-          DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - name: Docker Push
-        env:
-          REPO: gatsby-blog
-        run: |
-          docker build -t $REPO .
-          docker tag $REPO ${{secrets.DOCKER_USERNAME}}/$REPO:server
-          docker push ${{secrets.DOCKER_USERNAME}}/$REPO:server
-      - name: Docker Pull & Run From Hub
-        uses: appleboy/ssh-action@master
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          host: ${{secrets.SERVER_HOST}}
-          username: ubuntu
-          key: ${{secrets.SERVER_SSH_KEY}}
-          envs: GITHUB_SHA
-          script: |
-            docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-            docker pull ${{secrets.DOCKER_USERNAME}}/gatsby-blog:server
-            docker stop gatsby-server
-            docker rm gatsby-server
-            docker run -d --name gatsby-server -p 3000:3000 -e GMAIL_USER=${{secrets.GMAIL_USER}} -e GMAIL_PASSWORD=${{secrets.GMAIL_PASSWORD}} ${{secrets.DOCKER_USERNAME}}/gatsby-blog:server
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build, tag and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: gatsby-blog
+          IMAGE_TAG: server
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE
