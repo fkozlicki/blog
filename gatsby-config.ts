@@ -10,7 +10,7 @@ dotenv.config({
 const __dirname = new URL('.', import.meta.url).pathname;
 
 const strapiConfig = {
-	apiURL: process.env.STRAPI_API_URL,
+	apiURL: process.env.STRAPI_API_URL || 'http://localhost:1337',
 	accessToken: process.env.STRAPI_TOKEN,
 	collectionTypes: ['post', 'category', 'author', 'comment'],
 	singleTypes: [],
