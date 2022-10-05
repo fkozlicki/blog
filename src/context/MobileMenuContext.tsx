@@ -2,6 +2,7 @@ import { AnyAction, createSlice } from '@reduxjs/toolkit';
 import React, {
 	createContext,
 	Dispatch,
+	PropsWithChildren,
 	Reducer,
 	useContext,
 	useReducer,
@@ -36,7 +37,9 @@ export const MobileMenuContext = createContext<MobileMenuContextType>([
 	() => null,
 ]);
 
-export const MobileMenuContextProvider: Component = ({ children }) => {
+export const MobileMenuContextProvider: Component<PropsWithChildren> = ({
+	children,
+}) => {
 	const [state, dispatch] = useReducer<
 		Reducer<MobileMenuContextData, AnyAction>
 	>(MobileMenuSlice.reducer, DefaultMobileMenuContextData);

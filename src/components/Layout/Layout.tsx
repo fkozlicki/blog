@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import React, { ReactNode } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 import { useMobileMenuContext } from '../../context/MobileMenuContext';
 import { Container, Main } from '../../styled/Utils';
 import Footer from '../Footer/Footer';
@@ -22,7 +22,7 @@ interface LayoutProps {
 	aboutComponent?: ReactNode;
 }
 
-const Layout: Component<LayoutProps> = ({
+const Layout: Component<PropsWithChildren<LayoutProps>> = ({
 	children,
 	coloredHeader,
 	aboutComponent,

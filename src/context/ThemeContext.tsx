@@ -6,6 +6,7 @@ import React, {
 	useContext,
 	useEffect,
 	useReducer,
+	PropsWithChildren,
 } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { CustomTheme, darkTheme, lightTheme, media } from '../styled/Themes';
@@ -48,7 +49,9 @@ export const ThemeContext = createContext<ThemeContextType>([
 	() => null,
 ]);
 
-export const ThemeContextProvider: Component = ({ children }) => {
+export const ThemeContextProvider: Component<PropsWithChildren> = ({
+	children,
+}) => {
 	const [state, dispatch] = useReducer<Reducer<ThemeContextData, AnyAction>>(
 		ThemeSlice.reducer,
 		DefaultThemeContextData
