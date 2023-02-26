@@ -56,6 +56,11 @@ export const ContactFormButton = styled.button`
 	:hover {
 		background: ${({ theme }) => theme.colors.hoverSecondary};
 	}
+
+	:disabled {
+		cursor: not-allowed;
+		background: ${({ theme }) => theme.colors.fontDescription};
+	}
 `;
 
 export const ContactFormError = styled.p`
