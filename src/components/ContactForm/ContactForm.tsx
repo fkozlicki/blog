@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import * as S from './ContactForm.styled';
 import { useThemeContext } from '../../context/ThemeContext';
+import TextInput from '../../styled/elements/TextInput';
 
 interface IFormInputs {
 	name: string;
@@ -76,15 +77,11 @@ const ContactForm = () => {
 				}}
 			/>
 			<S.ContactFormInputWrapper>
-				<S.ContactFormName
-					type="text"
-					{...register('name')}
-					placeholder="John Doe"
-				/>
+				<TextInput type="text" {...register('name')} placeholder="John Doe" />
 				<S.ContactFormError>{errors.name?.message}</S.ContactFormError>
 			</S.ContactFormInputWrapper>
 			<S.ContactFormInputWrapper>
-				<S.ContactFormEmail
+				<TextInput
 					type="email"
 					{...register('email')}
 					onChange={() => clearErrors('email')}
@@ -94,7 +91,9 @@ const ContactForm = () => {
 			</S.ContactFormInputWrapper>
 			<S.ContactFormInputWrapper>
 				<S.ContactFormMessageWrapper>
-					<S.ContactFormMessage
+					<TextInput
+						textarea
+						as="textarea"
 						{...register('message')}
 						placeholder="Hi Filip, how are you..."
 					/>
