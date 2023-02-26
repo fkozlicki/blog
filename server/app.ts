@@ -26,14 +26,16 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.post('/contact', (req: Request, res: Response) => {
+	const { from, name, message } = req.body;
+
 	mailer.sendMail(
 		{
-			sender: req.body.from,
-			replyTo: req.body.from,
-			from: req.body.from,
+			sender: from,
+			replyTo: from,
+			from: from,
 			to: myAddress,
-			subject: 'Email from sendmailer',
-			text: `Hey, ${req.body.name} here!\n${req.body.message}`,
+			subject: `Blog message from ${from}`,
+			text: `Hey, ${name} here!\n${message}`,
 		},
 		(err, info) => {
 			if (err) {
