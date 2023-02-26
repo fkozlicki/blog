@@ -13,20 +13,20 @@ export const AuthorContent = styled.div`
 export const AuthorImage = styled((props) => <GatsbyImage {...props} />)`
 	width: 75px;
 	height: 75px;
-	border: 3px solid ${(props) => props.theme.colors.backgroundSecondary};
+	border: 3px solid ${({ theme: { colors } }) => colors.backgroundSecondary};
 	border-radius: 100%;
 `;
 export const AuthorInfo = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	color: ${(props) => props.theme.colors.fontPrimary};
+	color: ${({ theme: { colors } }) => colors.fontPrimary};
 `;
 export const AuthorName = styled.p`
 	font-size: 20px;
 `;
 export const AuthorBio = styled.p`
-	color: ${(props) => props.theme.colors.fontDescription};
+	color: ${({ theme: { colors } }) => colors.fontDescription};
 	text-transform: uppercase;
 	font-size: 14px;
 	font-weight: 500;

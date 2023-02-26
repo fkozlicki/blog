@@ -1,21 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Container } from '../../styled/Utils';
 
 export const AboutSection = styled.section`
-	background: ${(props) => props.theme.colors.backgroundSecondary};
+	background: ${({ theme: { colors } }) => colors.backgroundSecondary};
 	padding-top: 5rem;
+`;
 
-	.about-wave {
-		transform: translateY(4px);
-		filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(34deg)
-			brightness(114%) contrast(93%);
-		${(props) =>
-			props.theme.name === 'dark' &&
-			css`
-				filter: invert(14%) sepia(4%) saturate(4583%) hue-rotate(182deg)
-					brightness(94%) contrast(89%);
-			`}
-	}
+export const WaveWrapper = styled.div`
+	display: flex;
 `;
 
 export const AboutContentWrapper = styled(Container)`
@@ -31,7 +23,7 @@ export const AboutContentWrapper = styled(Container)`
 `;
 
 export const AboutInfo = styled.div`
-	color: ${(props) => props.theme.colors.fontPrimary};
+	color: ${({ theme: { colors } }) => colors.fontPrimary};
 `;
 export const AboutName = styled.h1`
 	font-size: 40px;
@@ -52,7 +44,7 @@ export const AboutDescription = styled.p`
 	}
 
 	a {
-		color: ${(props) => props.theme.colors.pink};
+		color: ${({ theme: { colors } }) => colors.pink};
 	}
 `;
 export const AboutSocials = styled.aside`
@@ -61,7 +53,7 @@ export const AboutSocials = styled.aside`
 	gap: 30px;
 
 	a {
-		color: ${(props) => props.theme.colors.fontPrimary};
+		color: ${({ theme: { colors } }) => colors.fontPrimary};
 	}
 
 	${({ theme }) => theme.media.tablet} {
