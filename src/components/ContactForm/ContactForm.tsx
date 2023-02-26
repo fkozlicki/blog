@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -41,8 +41,10 @@ const ContactForm = () => {
 	});
 	const { message } = watch();
 	const [{ theme }] = useThemeContext();
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const onSubmit = async (data: IFormInputs) => {
+		setLoading(true);
 		const mailData = {
 			name: data.name,
 			from: data.email,
@@ -64,6 +66,8 @@ const ContactForm = () => {
 			success: 'Sent successfully',
 			error: 'Something went wrong. Try again.',
 		});
+
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -107,7 +111,9 @@ const ContactForm = () => {
 				</S.ContactFormMessageWrapper>
 				<S.ContactFormError>{errors.message?.message}</S.ContactFormError>
 			</S.ContactFormInputWrapper>
-			<S.ContactFormButton type="submit">Send</S.ContactFormButton>
+			<S.ContactFormButton type="submit" disabled={loading}>
+				Send
+			</S.ContactFormButton>
 		</S.ContactForm>
 	);
 };
