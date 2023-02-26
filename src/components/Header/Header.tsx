@@ -35,7 +35,7 @@ const Header: Component<HeaderProps> = ({ categories, colored }) => {
 	return (
 		<S.Header colored={colored}>
 			<S.HeaderContent>
-				<Link to={`/`}>
+				<Link to="/">
 					<StaticImage
 						src="../../images/fk.svg"
 						alt="logo"
@@ -45,9 +45,9 @@ const Header: Component<HeaderProps> = ({ categories, colored }) => {
 					/>
 				</Link>
 				<S.HeaderLinkList>
-					<S.HeaderLink to={`/all`}>All</S.HeaderLink>
+					<S.HeaderLink to="/all">All</S.HeaderLink>
 					<S.HeaderCategoriesLinkList>
-						<S.HeaderLink to={`/category`}>Categories</S.HeaderLink>
+						<S.HeaderLink to="/category">Categories</S.HeaderLink>
 						<S.HeaderCategoriesButton
 							isSubMenuOpen={subMenuOpen}
 							onClick={toggleSubMenuOpen}
@@ -65,7 +65,7 @@ const Header: Component<HeaderProps> = ({ categories, colored }) => {
 							))}
 						</S.HeaderCategoriesList>
 					</S.HeaderCategoriesLinkList>
-					<S.HeaderLink to={`/contact`}>Contact</S.HeaderLink>
+					<S.HeaderLink to="/contact">Contact</S.HeaderLink>
 				</S.HeaderLinkList>
 				<S.MenuButton onClick={handleToggleMenu}>
 					{isOpen ? <BiX /> : <BiMenu />}
