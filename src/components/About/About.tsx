@@ -37,13 +37,13 @@ const About = () => {
 					</S.AboutDescription>
 				</S.AboutInfo>
 				<S.AboutSocials>
-					<a href="">
+					<a href="https://github.com/fkozlicki">
 						<FaGithub size={22} />
 					</a>
-					<a href="">
+					<a href="https://twitter.com/fkozlicki">
 						<FaTwitter size={22} />
 					</a>
-					<a href="">
+					<a href="https://linkedin.com/in/fkozlicki/">
 						<FaLinkedin size={22} />
 					</a>
 				</S.AboutSocials>

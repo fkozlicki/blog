@@ -33,13 +33,13 @@ const Footer = () => {
 					</S.FooterQuote>
 					<S.FooterAuthor>― Kurt Vonnegut</S.FooterAuthor>
 					<S.FooterSocials>
-						<a href="#!">
+						<a href="https://github.com/fkozlicki">
 							<BsTwitter />
 						</a>
-						<a href="#!">
+						<a href="https://twitter.com/fkozlicki">
 							<BsGithub />
 						</a>
-						<a href="#!">
+						<a href="https://linkedin.com/in/fkozlicki/">
 							<BsLinkedin />
 						</a>
 					</S.FooterSocials>
