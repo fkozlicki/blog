@@ -40,7 +40,7 @@ export const MobileMenuContent = styled.div`
 `;
 
 interface MobileMenuLinkProps {
-	isCategory?: boolean;
+	$isCategory?: boolean;
 }
 
 export const MobileMenuLink = styled((props) => (
@@ -52,7 +52,7 @@ export const MobileMenuLink = styled((props) => (
 	font-weight: 500;
 	color: ${(props) => props.theme.colors.fontPrimary};
 	${(props) =>
-		props.isCategory === true &&
+		props.$isCategory === true &&
 		css`
 			font-size: 24px;
 			padding: 8px 16px 8px 32px;
