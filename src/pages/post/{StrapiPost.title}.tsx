@@ -5,7 +5,6 @@ import Author from '../../components/Author/Author';
 import Layout from '../../components/Layout/Layout';
 import PostContent from '../../components/PostContent/PostContent';
 import PostTitle from '../../components/PostTitle/PostTitle';
-import { Container, Main } from '../../styled/Utils';
 
 interface PostProps {
 	data: {
