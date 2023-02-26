@@ -21,18 +21,18 @@ const MobileMenu: Component<MobileMenuProps> = ({ open, categories }) => {
 			<S.MobileMenuContentWrapper>
 				<S.MobileMenuContent>
 					<div>
-						<S.MobileMenuLink to="/all">Wszystkie</S.MobileMenuLink>
-						<S.MobileMenuLink to="/category">Kategorie</S.MobileMenuLink>
+						<S.MobileMenuLink to="/all">All</S.MobileMenuLink>
+						<S.MobileMenuLink to="/category">Categories</S.MobileMenuLink>
 						{categories.map((category) => (
 							<S.MobileMenuLink
 								to={`/category/${slugify(category.name, { lower: true })}`}
 								key={category.name}
-								isCategory={true}
+								$isCategory={true}
 							>
 								{category.name}
 							</S.MobileMenuLink>
 						))}
-						<S.MobileMenuLink to="/contact">Kontakt</S.MobileMenuLink>
+						<S.MobileMenuLink to="/contact">Contact</S.MobileMenuLink>
 					</div>
 					<S.ThemeButton onClick={handleToggleTheme}>
 						{theme.name === 'light' ? <BiMoon /> : <BiSun />}

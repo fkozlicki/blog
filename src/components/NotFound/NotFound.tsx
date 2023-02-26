@@ -6,9 +6,9 @@ const NotFound = () => {
 			<h1>
 				404
 				<br />
-				nie znaleziono
+				not found
 			</h1>
-			<p>Strona, której szukasz nie istnieje lub została usunieta.</p>
+			<p>This page doesn't exist or has been removed</p>
 		</div>
 	);
 };

@@ -22,12 +22,11 @@ const About = () => {
 					<S.AboutName>Filip Koźlicki</S.AboutName>
 					<S.AboutTitle>React Developer</S.AboutTitle>
 					<S.AboutDescription>
-						Witam Cię na moim blogu! Znajdziesz tu posty na temat HTML, CSS oraz
-						JavaScript. Jeśli interesujesz się web developmentem to trafiłeś
-						idealnie.
+						Welcome to my blog! You will find here posts about frontend. If you
+						are interested in web development, you've come to the right place.
 						<br />
 						<span>
-							Chcesz zadać mi pytanie? Pisz <Link to="/contact">tutaj</Link>
+							Want ask me a question? Write <Link to="/contact">here</Link>
 						</span>
 					</S.AboutDescription>
 				</S.AboutInfo>

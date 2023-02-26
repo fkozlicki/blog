@@ -18,7 +18,7 @@ const PostTitle: Component<PostTitleProps> = ({
 		<S.PostTitleWrapper>
 			<S.PostTitleTimeWrapper>
 				<BiTime />
-				<p>{readingTime} min czytania</p>
+				<p>{readingTime} min read</p>
 			</S.PostTitleTimeWrapper>
 			<S.PostTitle>{title}</S.PostTitle>
 			<S.PostTitleCategories>

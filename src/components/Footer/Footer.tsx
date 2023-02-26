@@ -20,8 +20,8 @@ const Footer = () => {
 			<S.FooterContent>
 				<Container>
 					<S.FooterQuote>
-						Wiedza jest najbardziej wartościowym towarem na świecie. Każde nowe
-						odkrycie czyni nas bogatszymi.
+						New knowledge is the most valuable commodity on earth. The more
+						truth we have to work with, the richer we become.
 					</S.FooterQuote>
 					<S.FooterAuthor>― Kurt Vonnegut</S.FooterAuthor>
 					<S.FooterSocials>
@@ -46,9 +46,6 @@ const Footer = () => {
 							/>
 						</Link>
 					</S.FooterLogo>
-					<S.FooterCopyright>
-						© Filip Koźlicki {new Date().getFullYear()}
-					</S.FooterCopyright>
 				</Container>
 			</S.FooterContent>
 		</S.Footer>

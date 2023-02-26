@@ -21,8 +21,8 @@ interface HomePageProps extends PageProps {
 const HomePage: Component<HomePageProps> = ({ data: { featured, recent } }) => {
 	return (
 		<Layout coloredHeader={true} aboutComponent={<About />}>
-			<PostsSection header="Wyróżnione Posty" posts={featured.nodes} />
-			<PostsSection header="Ostatnie Posty" posts={recent.nodes} />
+			<PostsSection header="Featured Posts" posts={featured.nodes} />
+			<PostsSection header="Last Posts" posts={recent.nodes} />
 		</Layout>
 	);
 };

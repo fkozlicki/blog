@@ -4,10 +4,9 @@ import * as S from './ContactHeader.styled';
 const ContactHeader = () => {
 	return (
 		<>
-			<S.ContactTitle>Pisz śmiało!</S.ContactTitle>
+			<S.ContactTitle>Feel free to message me</S.ContactTitle>
 			<S.ContactDescription>
-				Jeśli chciałbyś ze mną współpracować lub masz jakieś pytanie, tutaj
-				możesz wysłać mi wiadomość.
+				If you want to ask me a question, you can do it here ⬇️
 			</S.ContactDescription>
 		</>
 	);

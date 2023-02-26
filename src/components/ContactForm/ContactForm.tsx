@@ -15,15 +15,15 @@ interface IFormInputs {
 
 const schema = yup
 	.object({
-		name: yup.string().required('Te pole jest wymagane'),
+		name: yup.string().required('This field is required'),
 		email: yup
 			.string()
-			.email('To nie jest właściwy email')
-			.required('Te pole jest wymagane'),
+			.email('This is not right email')
+			.required('This field is required'),
 		message: yup
 			.string()
-			.required('Te pole jest wymagane')
-			.max(300, 'Wiadomość może mieć maksymalnie 300 znaków'),
+			.required('This field is required')
+			.max(300, 'Message can contain only 300 digits'),
 	})
 	.required();
 
@@ -38,7 +38,7 @@ const ContactForm = () => {
 	} = useForm<IFormInputs>({
 		resolver: yupResolver(schema),
 	});
-	const messageLength = watch('message')?.length ?? 0;
+	const { message } = watch();
 	const [{ theme }] = useThemeContext();
 
 	const onSubmit = async (data: IFormInputs) => {
@@ -55,9 +55,9 @@ const ContactForm = () => {
 		});
 
 		await toast.promise(postMessage, {
-			loading: 'Trwa wysyłanie...',
-			success: 'Wysłano pomyślnie.',
-			error: 'Coś poszło nie tak. Spróbuj ponownie.',
+			loading: 'Sending...',
+			success: 'Sent successfully',
+			error: 'Something went wrong. Try again.',
 		});
 	};
 
@@ -79,7 +79,7 @@ const ContactForm = () => {
 				<S.ContactFormName
 					type="text"
 					{...register('name')}
-					placeholder="Imię"
+					placeholder="John Doe"
 				/>
 				<S.ContactFormError>{errors.name?.message}</S.ContactFormError>
 			</S.ContactFormInputWrapper>
@@ -88,7 +88,7 @@ const ContactForm = () => {
 					type="email"
 					{...register('email')}
 					onChange={() => clearErrors('email')}
-					placeholder="Email"
+					placeholder="johndoe@example.com"
 				/>
 				<S.ContactFormError>{errors.email?.message}</S.ContactFormError>
 			</S.ContactFormInputWrapper>
@@ -96,13 +96,15 @@ const ContactForm = () => {
 				<S.ContactFormMessageWrapper>
 					<S.ContactFormMessage
 						{...register('message')}
-						placeholder="Wiadomość"
+						placeholder="Hi Filip, how are you..."
 					/>
-					<S.ContactFormCounter>{messageLength} / 300</S.ContactFormCounter>
+					<S.ContactFormCounter>
+						{message?.length ?? 0} / 300
+					</S.ContactFormCounter>
 				</S.ContactFormMessageWrapper>
 				<S.ContactFormError>{errors.message?.message}</S.ContactFormError>
 			</S.ContactFormInputWrapper>
-			<S.ContactFormButton type="submit">Wyślij</S.ContactFormButton>
+			<S.ContactFormButton type="submit">Send</S.ContactFormButton>
 		</S.ContactForm>
 	);
 };
