@@ -49,11 +49,15 @@ const ContactForm = () => {
 			message: data.message,
 		};
 
-		const postMessage = axios.post('http://localhost:3000/contact', mailData, {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
+		const postMessage = axios.post(
+			`${process.env.GATSBY_API_URL}/contact`,
+			mailData,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
 
 		await toast.promise(postMessage, {
 			loading: 'Sending...',
