@@ -1,11 +1,10 @@
 import React from 'react';
-import PostPreview, { IPost } from '../PostPreview/PostPreview';
+import PostPreview, { Post } from '../PostPreview/PostPreview';
 import * as S from './PostsSection.styled';
-import { Container } from '../../styled/Utils';
 
 type PostsSectionProps = {
 	header: string;
-	posts: IPost[];
+	posts: Post[];
 };
 
 const PostsSection: Component<PostsSectionProps> = ({ posts, header }) => {
@@ -13,7 +12,7 @@ const PostsSection: Component<PostsSectionProps> = ({ posts, header }) => {
 		<S.PostsSection>
 			<S.PostsSectionHeader>{header}</S.PostsSectionHeader>
 			<S.PostsContainer>
-				{posts.map((post: IPost, index) => (
+				{posts.map((post: Post, index) => (
 					<PostPreview key={index} post={post} />
 				))}
 			</S.PostsContainer>

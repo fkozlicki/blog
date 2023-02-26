@@ -2,18 +2,17 @@ import { graphql, PageProps } from 'gatsby';
 import React from 'react';
 import About from '../components/About/About';
 import Layout from '../components/Layout/Layout';
-import { IPost } from '../components/PostPreview/PostPreview';
+import { Post } from '../components/PostPreview/PostPreview';
 import PostsSection from '../components/PostsSection/PostsSection';
 import SEO from '../components/SEO';
-import { Container, Main } from '../styled/Utils';
 
 interface HomePageProps extends PageProps {
 	data: {
 		featured: {
-			nodes: IPost[];
+			nodes: Post[];
 		};
 		recent: {
-			nodes: IPost[];
+			nodes: Post[];
 		};
 	};
 }

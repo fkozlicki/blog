@@ -1,14 +1,14 @@
 import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
-import { IPost } from '../../components/PostPreview/PostPreview';
+import { Post } from '../../components/PostPreview/PostPreview';
 import PostsSection from '../../components/PostsSection/PostsSection';
 import { Container, Main } from '../../styled/Utils';
 
 interface CategoryProps extends PageProps {
 	data: {
 		strapiCategory: {
-			posts: IPost[];
+			posts: Post[];
 		};
 	};
 }

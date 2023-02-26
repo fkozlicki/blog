@@ -1,9 +1,10 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import slugify from 'slugify';
+import { CategoriesWrapper, Category } from '../../styled/elements/Category';
 import * as S from './PostPreview.styled';
 
-export interface IPost {
+export interface Post {
 	id: string;
 	title: string;
 	excerpt: string;
@@ -11,7 +12,7 @@ export interface IPost {
 }
 
 type PostPreviewProps = {
-	post: IPost;
+	post: Post;
 };
 
 const PostPreview: Component<PostPreviewProps> = ({ post }) => {
@@ -21,14 +22,12 @@ const PostPreview: Component<PostPreviewProps> = ({ post }) => {
 				to={`/post/${slugify(post.title, { lower: true }).replace('.', '')}`}
 			>
 				<S.PostPreviewTitle>{post.title}</S.PostPreviewTitle>
-				<S.PostPreviewBadges>
+				<CategoriesWrapper>
 					{post.categories &&
 						post.categories.map((category) => (
-							<S.PostPreviewBadge key={category.name}>
-								{category.name}
-							</S.PostPreviewBadge>
+							<Category key={category.name}>{category.name}</Category>
 						))}
-				</S.PostPreviewBadges>
+				</CategoriesWrapper>
 
 				<S.PostPreviewExcerpt>{post.excerpt}</S.PostPreviewExcerpt>
 			</Link>
