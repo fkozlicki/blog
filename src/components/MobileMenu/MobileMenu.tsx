@@ -21,6 +21,7 @@ const MobileMenu: Component<MobileMenuProps> = ({ open, categories }) => {
 			<S.MobileMenuContentWrapper>
 				<S.MobileMenuContent>
 					<div>
+						<S.MobileMenuLink to="/">Home</S.MobileMenuLink>
 						<S.MobileMenuLink to="/all">All</S.MobileMenuLink>
 						<S.MobileMenuLink to="/category">Categories</S.MobileMenuLink>
 						{categories.map((category) => (
