@@ -6,7 +6,7 @@ import { Post } from '../components/PostPreview/PostPreview';
 import PostsSection from '../components/PostsSection/PostsSection';
 import SEO from '../components/SEO';
 
-interface HomePageProps extends PageProps {
+interface HomeProps extends PageProps {
 	data: {
 		featured: {
 			nodes: Post[];
@@ -17,7 +17,7 @@ interface HomePageProps extends PageProps {
 	};
 }
 
-const HomePage: Component<HomePageProps> = ({ data: { featured, recent } }) => {
+const Home: Component<HomeProps> = ({ data: { featured, recent } }) => {
 	return (
 		<Layout coloredHeader={true} aboutComponent={<About />}>
 			<PostsSection header="Featured Posts" posts={featured.nodes} />
@@ -26,7 +26,7 @@ const HomePage: Component<HomePageProps> = ({ data: { featured, recent } }) => {
 	);
 };
 
-export default HomePage;
+export default Home;
 
 export const Head = () => <SEO />;
 

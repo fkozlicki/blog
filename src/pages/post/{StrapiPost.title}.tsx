@@ -1,10 +1,11 @@
-import { graphql } from 'gatsby';
+import { graphql, HeadProps } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import React from 'react';
 import Author from '../../components/Author/Author';
 import Layout from '../../components/Layout/Layout';
 import PostContent from '../../components/PostContent/PostContent';
 import PostTitle from '../../components/PostTitle/PostTitle';
+import SEO from '../../components/SEO';
 
 interface PostProps {
 	data: {
@@ -32,11 +33,12 @@ interface PostProps {
 					};
 				};
 			};
+			excerpt: string;
 		};
 	};
 }
 
-const Post: Component<PostProps> = ({ data: { strapiPost: post } }) => {
+const Post = ({ data: { strapiPost: post } }: PostProps) => {
 	return (
 		<Layout>
 			<PostTitle
@@ -48,6 +50,14 @@ const Post: Component<PostProps> = ({ data: { strapiPost: post } }) => {
 			<PostContent content={post.content.data.childMarkdownRemark} />
 		</Layout>
 	);
+};
+
+export const Head = ({
+	data: {
+		strapiPost: { title, excerpt },
+	},
+}: HeadProps<PostProps['data']>) => {
+	return <SEO title={title} description={excerpt} />;
 };
 
 export default Post;
@@ -86,6 +96,7 @@ export const query = graphql`
 					}
 				}
 			}
+			excerpt
 		}
 	}
 `;

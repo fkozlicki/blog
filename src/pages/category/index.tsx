@@ -2,7 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import PostsSection from '../../components/PostsSection/PostsSection';
-import { Container, Main } from '../../styled/Utils';
+import SEO from '../../components/SEO';
 
 interface CategoryProps {
 	data: {
@@ -23,7 +23,7 @@ interface CategoryProps {
 	};
 }
 
-const Category: Component<CategoryProps> = ({ data }) => {
+const Category = ({ data }: CategoryProps) => {
 	const categories = data.allStrapiCategory.nodes;
 
 	return (
@@ -37,6 +37,10 @@ const Category: Component<CategoryProps> = ({ data }) => {
 			))}
 		</Layout>
 	);
+};
+
+export const Head = () => {
+	return <SEO title="Categories" />;
 };
 
 export default Category;

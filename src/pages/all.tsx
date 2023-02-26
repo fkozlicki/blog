@@ -4,8 +4,9 @@ import FilteredPosts from '../components/FilteredPosts/FilteredPosts';
 import Layout from '../components/Layout/Layout';
 import PostsSection from '../components/PostsSection/PostsSection';
 import Search from '../components/Search/Search';
+import SEO from '../components/SEO';
 
-interface AllProps extends PageProps {
+interface AllPostsProps extends PageProps {
 	data: {
 		allStrapiPost: {
 			nodes: [
@@ -21,7 +22,7 @@ interface AllProps extends PageProps {
 	};
 }
 
-const All: Component<AllProps> = ({ data }) => {
+const AllPosts = ({ data }: AllPostsProps) => {
 	const posts = data.allStrapiPost.nodes;
 	const categories = data.allStrapiCategory.nodes.map(
 		(category) => category.name
@@ -76,7 +77,9 @@ const All: Component<AllProps> = ({ data }) => {
 	);
 };
 
-export default All;
+export default AllPosts;
+
+export const Head = () => <SEO title="Filip Kozlicki | All posts" />;
 
 export const query = graphql`
 	{

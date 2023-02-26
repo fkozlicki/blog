@@ -1,8 +1,8 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
 import NotFound from '../components/NotFound/NotFound';
+import SEO from '../components/SEO';
 
-// markup
 const NotFoundPage = () => {
 	return (
 		<Layout>
@@ -10,5 +10,7 @@ const NotFoundPage = () => {
 		</Layout>
 	);
 };
+
+export const Head = () => <SEO title="Filip Kozlicki | 404" />;
 
 export default NotFoundPage;
