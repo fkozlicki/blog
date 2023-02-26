@@ -10,6 +10,10 @@ export const WaveWrapper = styled.div`
 	display: flex;
 `;
 
+export const FooterWave = styled.svg`
+	width: 100%;
+`;
+
 export const AboutContentWrapper = styled(Container)`
 	display: flex;
 	flex-direction: column;

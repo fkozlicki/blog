@@ -6,6 +6,10 @@ export const Footer = styled.footer`
 export const WaveWrapper = styled.div`
 	display: flex;
 `;
+export const FooterWave = styled.svg`
+	width: 100%;
+`;
+
 export const FooterContent = styled.div`
 	padding: 15px;
 	background: ${({ theme: { colors } }) => colors.backgroundSecondary};
