@@ -1,4 +1,4 @@
-# Blog - <a href="https://kozlicki-blog.pl">link</a>
+# Blog - <a href="https://gatsby-blog-delta.vercel.app">link</a>
 
 ## Description
 Blog about front-end development. Content built on Strapi CMS, user can read featured and recent articles, search content or filter by category, switch theme, navigate through article using table of content, contact author using form.
